@@ -1,4 +1,4 @@
 .vagrant
 **/target/
 thrift-server/target
-apps
+apps/
