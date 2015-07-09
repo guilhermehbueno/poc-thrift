@@ -1,6 +1,11 @@
-if ! type "thrift" > /dev/null; then
+#!/bin/bash
+file=".thrift_provisioned"
+if [ -f "$file" ]
+then
+  echo "$file found."
+  echo "Thrift already installed"
+else
   echo "Installing Thrift"
-
   #Install the Platform Development Tools
   sudo yum -y groupinstall "Development Tools"
 
@@ -44,5 +49,5 @@ if ! type "thrift" > /dev/null; then
   ./configure --with-lua=no
   make
   sudo make install
-
+  touch $file
 fi
