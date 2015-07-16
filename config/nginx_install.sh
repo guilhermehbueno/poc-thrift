@@ -8,3 +8,8 @@
 # ./configure
 # make
 # make install
+
+
+
+#Rodando nginx
+#/usr/local/openresty/nginx/sbin/nginx -p `pwd`/ -c conf/nginx.conf

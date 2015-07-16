@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:camel="http://camel.apache.org/schema/spring" xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="
+        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+                http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="processor" class="com.camel.websocket.example.RuleProcessor" />
+	<bean id="routeBuilder" class="com.camel.websocket.example.WebSocketRouteBuilder" />
+
+	<camelContext xmlns="http://camel.apache.org/schema/spring">
+		<routeBuilder ref="routeBuilder" />
+	</camelContext>
+</beans>
