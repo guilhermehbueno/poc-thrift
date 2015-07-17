@@ -29,6 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ruleclient.vm.synced_folder "apps/", "/opt/apps/"
     ruleclient.vm.synced_folder "render/", "/opt/webapp/render/"
     ruleclient.vm.synced_folder "ws-server/", "/opt/webapp/ws-server/"
+    ruleclient.vm.synced_folder "config/files/work-app", "/home/vagrant/work-app"
     ruleclient.vm.provision "shell", path: "config/up.sh"
     ruleclient.vm.provision "shell", path: "config/nginx_install.sh"
     ruleclient.vm.provision "shell", path: "config/redis_install.sh"

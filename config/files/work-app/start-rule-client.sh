@@ -1,0 +1,1 @@
+nohup java -jar /opt/apps/camel-websocket-example-1.0-SNAPSHOT-jar-with-dependencies.jar &

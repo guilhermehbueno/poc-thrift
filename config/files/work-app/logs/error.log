@@ -1,0 +1,58 @@
+2015/07/17 16:17:14 [error] 4316#0: *1 connect() failed (111: Connection refused), client: 192.168.50.1, server: , request: "GET / HTTP/1.1", host: "192.168.50.4:8080"
+2015/07/17 16:17:15 [error] 4316#0: *1 connect() failed (111: Connection refused), client: 192.168.50.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "192.168.50.4:8080", referrer: "http://192.168.50.4:8080/"
+2015/07/17 16:25:55 [emerg] 4368#0: bind() to 0.0.0.0:8080 failed (98: Address already in use)
+2015/07/17 16:25:55 [emerg] 4368#0: bind() to 0.0.0.0:8080 failed (98: Address already in use)
+2015/07/17 16:25:55 [emerg] 4368#0: bind() to 0.0.0.0:8080 failed (98: Address already in use)
+2015/07/17 16:25:55 [emerg] 4368#0: bind() to 0.0.0.0:8080 failed (98: Address already in use)
+2015/07/17 16:25:55 [emerg] 4368#0: bind() to 0.0.0.0:8080 failed (98: Address already in use)
+2015/07/17 16:25:55 [emerg] 4368#0: still could not bind()
+2015/07/17 16:45:46 [error] 4429#0: *1 failed to load external Lua file "/home/vagrant/work-app/proxy-websocket.lua": cannot open /home/vagrant/work-app/proxy-websocket.lua: No such file or directory, client: 192.168.50.1, server: , request: "GET / HTTP/1.1", host: "192.168.50.4:8080"
+2015/07/17 16:45:46 [error] 4429#0: *1 failed to load external Lua file "/home/vagrant/work-app/proxy-websocket.lua": cannot open /home/vagrant/work-app/proxy-websocket.lua: No such file or directory, client: 192.168.50.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "192.168.50.4:8080", referrer: "http://192.168.50.4:8080/"
+2015/07/17 18:29:02 [error] 4562#0: *1 lua entry thread aborted: runtime error: /home/vagrant/work-app/conf/proxy-websocket.lua:3: module 'resty.cookie' not found:
+	no field package.preload['resty.cookie']
+	no file '/usr/local/openresty/lualib/resty/cookie.lua'
+	no file '/usr/local/openresty/lualib/resty/cookie/init.lua'
+	no file './resty/cookie.lua'
+	no file '/usr/local/openresty/luajit/share/luajit-2.1.0-alpha/resty/cookie.lua'
+	no file '/usr/local/share/lua/5.1/resty/cookie.lua'
+	no file '/usr/local/share/lua/5.1/resty/cookie/init.lua'
+	no file '/usr/local/openresty/luajit/share/lua/5.1/resty/cookie.lua'
+	no file '/usr/local/openresty/luajit/share/lua/5.1/resty/cookie/init.lua'
+	no file '/usr/local/openresty/lualib/resty/cookie.so'
+	no file './resty/cookie.so'
+	no file '/usr/local/lib/lua/5.1/resty/cookie.so'
+	no file '/usr/local/openresty/luajit/lib/lua/5.1/resty/cookie.so'
+	no file '/usr/local/lib/lua/5.1/loadall.so'
+	no file '/usr/local/openresty/lualib/resty.so'
+	no file './resty.so'
+	no file '/usr/local/lib/lua/5.1/resty.so'
+	no file '/usr/local/openresty/luajit/lib/lua/5.1/resty.so'
+	no file '/usr/local/lib/lua/5.1/loadall.so'
+stack traceback:
+coroutine 0:
+	[C]: in function 'require'
+	/home/vagrant/work-app/conf/proxy-websocket.lua:3: in function </home/vagrant/work-app/conf/proxy-websocket.lua:1>, client: 192.168.50.1, server: , request: "GET / HTTP/1.1", host: "192.168.50.4:8080"
+2015/07/17 18:29:02 [error] 4562#0: *2 lua entry thread aborted: runtime error: /home/vagrant/work-app/conf/proxy-websocket.lua:3: module 'resty.cookie' not found:
+	no field package.preload['resty.cookie']
+	no file '/usr/local/openresty/lualib/resty/cookie.lua'
+	no file '/usr/local/openresty/lualib/resty/cookie/init.lua'
+	no file './resty/cookie.lua'
+	no file '/usr/local/openresty/luajit/share/luajit-2.1.0-alpha/resty/cookie.lua'
+	no file '/usr/local/share/lua/5.1/resty/cookie.lua'
+	no file '/usr/local/share/lua/5.1/resty/cookie/init.lua'
+	no file '/usr/local/openresty/luajit/share/lua/5.1/resty/cookie.lua'
+	no file '/usr/local/openresty/luajit/share/lua/5.1/resty/cookie/init.lua'
+	no file '/usr/local/openresty/lualib/resty/cookie.so'
+	no file './resty/cookie.so'
+	no file '/usr/local/lib/lua/5.1/resty/cookie.so'
+	no file '/usr/local/openresty/luajit/lib/lua/5.1/resty/cookie.so'
+	no file '/usr/local/lib/lua/5.1/loadall.so'
+	no file '/usr/local/openresty/lualib/resty.so'
+	no file './resty.so'
+	no file '/usr/local/lib/lua/5.1/resty.so'
+	no file '/usr/local/openresty/luajit/lib/lua/5.1/resty.so'
+	no file '/usr/local/lib/lua/5.1/loadall.so'
+stack traceback:
+coroutine 0:
+	[C]: in function 'require'
+	/home/vagrant/work-app/conf/proxy-websocket.lua:3: in function </home/vagrant/work-app/conf/proxy-websocket.lua:1>, client: 192.168.50.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "192.168.50.4:8080", referrer: "http://192.168.50.4:8080/"
