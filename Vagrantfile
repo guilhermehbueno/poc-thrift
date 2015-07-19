@@ -36,5 +36,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ruleclient.vm.provision "shell", path: "config/thrift_install.sh"
     ruleclient.vm.provision "shell", path: "config/java_install.sh"
     ruleclient.vm.network "forwarded_port", guest: 3100, host: 3100
+    ruleclient.vm.network "forwarded_port", guest: 6379, host: 6379
   end
 end
