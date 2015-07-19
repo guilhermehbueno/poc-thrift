@@ -2,3 +2,5 @@
 **/target/
 thrift-server/target
 apps/
+
+config/files/work-app/logs/access.log
