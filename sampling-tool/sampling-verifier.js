@@ -1,3 +1,5 @@
+var argv = require('minimist')(process.argv.slice(2));
+
 var http = require('http');
 var multimeter = require('multimeter');
 var cookie = require('cookie');
@@ -39,47 +41,52 @@ var barNo = multi(s.length + 10, 2 + 3, {
 bars.push(barNo);
 
 var charm = multi.charm;
-// charm.on('^C', process.exit);
-// charm.reset();
-// charm.write('    ');
 charm.write('\n\nResult: ');
 
-var max = 50000;
+if(!argv.t){
+  argv.t=1000
+}
+
+if(!argv.h){
+  argv.h='http://192.168.50.4:8080'
+}
+
+var max = argv.t;
 var count =0;
 var noCount=0;
 var yesCount=0;
 
 for (var i = 0; i < max; i++) {
-  http.get('http://192.168.50.4:8080', function(res) {
-    if(res.headers.cookie){
-      var cookies = cookie.parse(res.headers.cookie);
-      console.log(JSON.stringify(cookies));
-    }
+  http.get(argv.h, function(res) {
+    try {
+      res.on('end', function(){
+        var cookies = cookie.parse(res.headers['set-cookie'].join());
+        count++;
+        if(cookies.experiment === "no"){
+          noCount++;
+        }else{
+          yesCount++;
+        }
 
-    var body = "";
-    res.on('end', function () {
-      count++;
-      body = body.substring(0,body.length-1)
-      if(body === "no"){
-        noCount++;
-      }else{
-        yesCount++;
-      }
+        barYes.percent(yesCount/count * 100);
+        barNo.percent(noCount/count * 100);
 
-      barYes.percent(yesCount/count * 100);
-      barNo.percent(noCount/count * 100);
-
-      charm.position(function (x, y) {
-        charm
-        .position(x, y)
-        .left(x - "\n\nResult: ".length)
-        .erase('end')
-        .write(count.toString());
+        charm.position(function (x, y) {
+          charm
+          .position(x, y)
+          .left(x - "\n\nResult: ".length)
+          .erase('end')
+          .write(count.toString());
+        });
       });
-    });
-    res.on('data', function (chunk) {
-      body+=chunk;
-    });
+
+      var body = "";
+      res.on('data', function (chunk) {
+        body+=chunk;
+      });
+    } catch(error){
+      console.log("Got error: " + error);
+    }
   }).on('error', function(e) {
     console.log("Got error: " + e.message);
   });

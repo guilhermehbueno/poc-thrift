@@ -1,37 +1,11 @@
-var multimeter = require('multimeter');
+var http = require("http");
+var cookie = require('cookie');
 
-var multi = multimeter(process);
-var charm = multi.charm;
-charm.on('^C', process.exit);
-charm.reset();
+http.get('http://192.168.50.4:8080', function(res) {
 
-var xs = [];
-for (var i = 0; i < 100; i++) xs.push(i);
+ var cookies = cookie.parse(res.headers['set-cookie'].join());
+ console.log("Cookie: " + JSON.stringify(cookies));
 
-console.log('Calculating the sum of [0..100]:\n');
-charm.write('    ');
-
-multi.drop(function (bar) {
-    bar.percent(0);
-
-    charm.write('\n\nResult: ');
-    charm.position(function (x, y) {
-        var sum = 0;
-        var iv = setInterval(function () {
-            sum += xs.shift();
-
-            bar.percent(100 - xs.length);
-
-            charm
-                .position(x, y)
-                .erase('end')
-                .write(sum.toString())
-            ;
-
-            if (xs.length === 0) {
-                clearInterval(iv);
-                multi.destroy();
-            }
-        }, 50);
-    });
+}).on('error', function(e) {
+    console.log("Got error: " + e.message);
 });

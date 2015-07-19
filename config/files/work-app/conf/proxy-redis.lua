@@ -10,24 +10,37 @@ if not ok then
 end
 
 math.randomseed(os.time())
-function sampling(x)
-  x = tonumber(x)
+function sampling(experiment)
+  x = tonumber(experiment.sampling)
   local result = "000"
   if math.random(0,100) < x
     then
       result = "yes"
       ngx.header['Set-Cookie'] = 'experiment=yes; path=/'
-      ngx.say(result)
-      ngx.var.experiment_version="b"
+      chooseExperimentVersion(experiment)
+      -- ngx.say(result)
     else
       result = "no"
+      ngx.header['Set-Cookie'] = 'experimentVersion=; path=/'
       ngx.header['Set-Cookie'] = 'experiment=no; path=/'
-      ngx.say(result)
+      ngx.var.experiment_version=""
+      -- ngx.say(result)
   end
 end
 
-function chooseExperimentVersion()
+function chooseExperimentVersion(experiment)
+  x = 50
+  local result = "000"
+  if math.random(0,100) < x
+    then
+      ngx.header['Set-Cookie'] = {'experimentVersion=a; path=/'}
+      ngx.var.experiment_version=experiment.versionA
+    else
+      ngx.var.experiment_version=experiment.versionB
+      ngx.header['Set-Cookie'] =  {'experimentVersion=b; path=/'}
+  end
 end
+
 
 local cjson = require "cjson"
 local experimentId, err = red:srandmember("published")
@@ -37,4 +50,4 @@ local encodedExperiment = cjson.encode(res)
 local decodedExperiment = cjson.decode(encodedExperiment)
 local experiment = cjson.decode(decodedExperiment[1])
 -- ngx.say(teste.name)
-sampling(experiment.sampling)
+sampling(experiment)
